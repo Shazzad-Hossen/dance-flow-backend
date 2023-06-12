@@ -17,7 +17,12 @@ const client = new MongoClient(uri, {
 
   
 
-
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
 
 //Middleware
 app.use(cors());
@@ -70,6 +75,20 @@ async function run() {
     });
 
     //routes
+
+    //get user role
+    app.get('/role/:email',async(req,res)=>{
+      
+      const email= req.params.email;
+      if(!email){
+        res.send(null);
+      }
+      const query= { email:email};
+      const result= await usersCollection.findOne(query);
+      res.send(result)
+
+    })
+
 
     //get all instructors
     app.get('/instructors',async(req,res)=>{
