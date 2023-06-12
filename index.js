@@ -25,7 +25,7 @@ app.use(function(req, res, next) {
 });
 
 //Middleware
-app.use(cors());
+//app.use(cors());
 app.use(express.json());
 
 const verifyJWT=(req,res,next)=>{
