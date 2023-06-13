@@ -129,7 +129,7 @@ async function run() {
     });
 
     //get all classes for admin
-    app.get('/admin-classes',verifyJWT, async(req,res)=>{
+    app.get('/admin-classes', async(req,res)=>{
       
       
       const result= await classCollection.find().sort({_id: -1}).toArray();
