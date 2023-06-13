@@ -99,7 +99,7 @@ async function run() {
 
 
     //get all classes data for user
-    app.get('/classes',verifyJWT, async(req,res)=>{
+    app.get('/classes', async(req,res)=>{
       const filter={status: 'approved'}
       
       const result= await classCollection.find(filter).sort({_id: -1}).toArray();
